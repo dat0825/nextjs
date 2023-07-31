@@ -1,4 +1,5 @@
 import {Button} from "@/app/ssr/Button";
+import {Metadata} from "next";
 
 type User = {
     name: string,
@@ -6,6 +7,9 @@ type User = {
 type Users = {
     users: Array<User>
 }
+// export const metadata: Metadata = {
+//     title: 'Users',
+// }
 
 const getData = async () => {
     const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
