@@ -1,10 +1,11 @@
 import {Button} from "@/app/ssr/Button";
 import {Metadata} from "next";
+import {Suspense} from "react";
 
-type User = {
+export type User = {
     name: string,
 }
-type Users = {
+ type Users = {
     users: Array<User>
 }
 // export const metadata: Metadata = {
@@ -16,31 +17,27 @@ const getData = async () => {
     return await res.json();
 }
 
-export async function generateMetadata({params, searchParams}: { params: any, searchParams: any }) {
-    console.log("MMMMMMMMMMM", params, searchParams)
-    return {
-        title: '...',
-    }
-}
 
 export default async function SSR() {
     let users = await getData()
     console.log("KKKKKKKKKKKKKkk", users)
     // const {data} = props
     return (
-        <div>
-            <div>List users</div>
-            {
-                users.map((user: User, index: number) => {
-                    return (
-                        <div key={index} style={{marginBottom: 16}}>
-                            {user.name}
-                        </div>
-                    )
-                })
-            }
-            <Button/>
-        </div>
+        <Suspense fallback={<h1>Loading...</h1>}>
+            <div>
+                <div>List users</div>
+                {
+                    users.map((user: User, index: number) => {
+                        return (
+                            <div key={index} style={{marginBottom: 16}}>
+                                {user.name}
+                            </div>
+                        )
+                    })
+                }
+                <Button/>
+            </div>
+        </Suspense>
     )
 }
 
