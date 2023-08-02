@@ -14,12 +14,12 @@ type Params = {
         type: string
     }
 }
-// export async function generateMetadata({params: {type}}: Params): Promise<Metadata> {
-//     return {
-//         title: `SSR - ${type}`,
-//         description: `This is the page of ${type}`
-//     }
-// }
+export async function generateMetadata({params: {type}}: Params): Promise<Metadata> {
+    return {
+        title: `SSR - ${type}`,
+        description: `This is the page of ${type}`
+    }
+}
 
 const getData = async () => {
     const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
