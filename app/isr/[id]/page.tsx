@@ -1,7 +1,6 @@
 import {GetStaticPaths} from "next";
 
 async function Blog(props: any) {
-    console.log("TTTTTTTTTT", props)
     const res = await fetch('https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list', {next: {revalidate: 10}})
     const posts = await res.json()
     return (

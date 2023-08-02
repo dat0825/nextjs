@@ -8,7 +8,6 @@ async function getCharacters() {
 // getStaticPaths in Next13
 export async function generateStaticParams(props: any) {
     const characters = await getCharacters();
-    console.log("TTTTTTTTT", props)
     return characters.map((c: any) => ({
         id: c?.name.replace(/\s+/g, "-").toLowerCase()
     }))
@@ -20,20 +19,15 @@ type Params = {
     }
 }
 
-
 export async function generateMetadata({params: {id}}: Params): Promise<Metadata> {
-    console.log("MMMMMMMMMM", id)
-    const user: User = {name: "LLAD"}
 
     return {
-        title: user.name,
-        description: `This is the page of ${user.name}`
+        title: `SSG - ${id}`,
+        description: `This is the page of ${id}`
     }
 }
 
-
 export default function Staticpage(props: any) {
-    console.log("ZZZZZZZZZZ", props)
     return (
         <>
             <h1>The character name is: {props.params.id}</h1>

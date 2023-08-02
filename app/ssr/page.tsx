@@ -8,20 +8,18 @@ export type User = {
  type Users = {
     users: Array<User>
 }
-// export const metadata: Metadata = {
-//     title: 'Users',
-// }
+export const metadata: Metadata = {
+    title: 'SSR',
+}
 
 const getData = async () => {
-    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list", {next: {revalidate: 100}})
+    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
     return await res.json();
 }
 
 
 export default async function SSR() {
     let users = await getData()
-    console.log("KKKKKKKKKKKKKkk", users)
-    // const {data} = props
     return (
         <Suspense fallback={<h1>Loading...</h1>}>
             <div>
