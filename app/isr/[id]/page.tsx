@@ -1,4 +1,5 @@
-import {GetStaticPaths} from "next";
+import {GetStaticPaths, Metadata} from "next";
+import {Params} from "@/app/ssg/[id]/page";
 
 async function Blog(props: any) {
     const res = await fetch('https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list', {next: {revalidate: 10}})
@@ -31,6 +32,14 @@ async function Blog(props: any) {
 //     // return {paths, fallback: 'blocking'}
 //     return paths
 // }
+
+export async function generateMetadata({params: {id}}: Params): Promise<Metadata> {
+    return {
+        title: `ISR - ${id}`,
+        description: `This is the page of ${id}`
+    }
+}
+
 
 export async function getStaticPaths() {
     return {

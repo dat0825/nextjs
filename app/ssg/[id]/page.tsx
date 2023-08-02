@@ -13,7 +13,7 @@ export async function generateStaticParams(props: any) {
     }))
 }
 
-type Params = {
+export type Params = {
     params: {
         id: string
     }
