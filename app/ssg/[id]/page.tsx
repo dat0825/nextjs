@@ -1,5 +1,5 @@
 import {Metadata} from "next";
-import {User} from "@/app/ssr/page";
+import {User} from "@/app/ssr/[type]/page";
 
 async function getCharacters() {
     return await (await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")).json();
