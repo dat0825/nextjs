@@ -1,6 +1,7 @@
 import {Button} from "@/app/ssr/[type]/Button";
 import {Metadata} from "next";
-import {Suspense} from "react";
+import React, {Suspense} from "react";
+import styles from "@/app/ssr/style.module.css";
 
 export type User = {
     name: string,
@@ -37,19 +38,19 @@ export default async function SSR({params}: { params: { type: string } }) {
     let users = type === 'cache' ? await getData() : await getDataWithNoCache()
     return (
         <Suspense fallback={<h1>Loading...</h1>}>
-            <div>
-                <div>List users</div>
+            <div className={styles.title}>AAAAAAAAAAAA</div>
+            <ul>
                 {
                     users.map((user: User, index: number) => {
                         return (
-                            <div key={index} style={{marginBottom: 16}}>
+                            <li key={index} style={{marginBottom: 16}}>
                                 {user.name}
-                            </div>
+                            </li>
                         )
                     })
                 }
                 <Button/>
-            </div>
+            </ul>
         </Suspense>
     )
 }

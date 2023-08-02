@@ -30,16 +30,17 @@ export default function CRS({params}: { params: any }) {
 
     return (
         <div>
-            <div>List users</div>
-            {
-                users.map((user, index) => {
-                    return (
-                        <div key={index} style={{marginBottom: 16}}>
-                            {user.name}
-                        </div>
-                    )
-                })
-            }
+            <ul>
+                {
+                    users.map((user, index) => {
+                        return (
+                            <li key={index} style={{marginBottom: 16}}>
+                                {user.name}
+                            </li>
+                        )
+                    })
+                }
+            </ul>
         </div>
     )
 }
