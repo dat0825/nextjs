@@ -2,6 +2,8 @@ import {Button} from "@/app/ssr/[type]/Button";
 import {Metadata} from "next";
 import React, {Suspense} from "react";
 import styles from "@/app/ssr/style.module.css";
+import AddButton from "@/app/ssr/[type]/AddButton";
+import {revalidatePath} from "next/cache";
 
 export type User = {
     name: string,
@@ -15,6 +17,7 @@ type Params = {
         type: string
     }
 }
+
 export async function generateMetadata({params: {type}}: Params): Promise<Metadata> {
     return {
         title: `SSR - ${type}`,
@@ -32,12 +35,38 @@ const getDataWithNoCache = async () => {
     return await res.json();
 }
 
+const todos: string[] = ["Learn React"];
 
 export default async function SSR({params}: { params: { type: string } }) {
+
+    async function addTodo(data: FormData) {
+        "use server";
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
+        const todo = data.get("todo") as string;
+        todos.push(todo);
+        revalidatePath("/");
+    }
+
+
     const {type} = params
     let users = type === 'cache' ? await getData() : await getDataWithNoCache()
     return (
         <Suspense fallback={<h1>Loading...</h1>}>
+            {/*<h1 className="text-4xl font-bold">Todos</h1>*/}
+            {/*<ul>*/}
+            {/*    {todos.map((todo, index) => (*/}
+            {/*        <li key={index}>{todo}</li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
+            {/*<form action={addTodo}>*/}
+            {/*    <input*/}
+            {/*        type="text"*/}
+            {/*        name="todo"*/}
+            {/*    />*/}
+            {/*    <AddButton/>*/}
+            {/*</form>*/}
             <div className={styles.title}>AAAAAAAAAAAA</div>
             <ul>
                 {

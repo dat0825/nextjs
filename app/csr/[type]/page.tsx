@@ -5,6 +5,8 @@ import {requestDataFromClient} from "@/app/utils/lib-client";
 import Head from "next/head";
 import {Metadata} from "next";
 import {wait} from "@/app/utils/utils";
+import { experimental_useOptimistic as useOptimistic } from 'react'
+
 
 type User = {
     name: string,
