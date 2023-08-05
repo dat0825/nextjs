@@ -85,13 +85,13 @@ export default async function SSR({params}: { params: { type: string } }) {
     )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
-    const data = await res.json();
-
-    return {
-        props: {
-            data, // will be passed to the page component as props
-        },
-    };
-}
+// export async function getServerSideProps() {
+//     const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
+//     const data = await res.json();
+//
+//     return {
+//         props: {
+//             data, // will be passed to the page component as props
+//         },
+//     };
+// }
