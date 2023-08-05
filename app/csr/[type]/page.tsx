@@ -2,10 +2,6 @@
 import React, {useEffect, useState} from "react";
 import {requestDataFromServer} from "@/app/utils/lib-server";
 import {requestDataFromClient} from "@/app/utils/lib-client";
-import Head from "next/head";
-import {Metadata} from "next";
-import {wait} from "@/app/utils/utils";
-import { experimental_useOptimistic as useOptimistic } from 'react'
 
 
 type User = {
@@ -28,21 +24,25 @@ export default function CRS({params}: { params: any }) {
             setUsers(data)
         }
         fetchFunc()
+        document.cookie = "token=Token 123 456; path=/; secure= true";
     }, [])
 
     return (
         <div>
+            <div>AAAAAA</div>
             <ul>
                 {
                     users.map((user, index) => {
                         return (
                             <li key={index} style={{marginBottom: 16}}>
                                 {user.name}
+                                <span>LLLL</span>
                             </li>
                         )
                     })
                 }
             </ul>
+            <div>BBBBBBBBBBBBBB</div>
         </div>
     )
 }

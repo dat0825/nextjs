@@ -2,7 +2,6 @@ import {Button} from "@/app/ssr/[type]/Button";
 import {Metadata} from "next";
 import React, {Suspense} from "react";
 import styles from "@/app/ssr/style.module.css";
-import AddButton from "@/app/ssr/[type]/AddButton";
 import {revalidatePath} from "next/cache";
 
 export type User = {
@@ -53,7 +52,8 @@ export default async function SSR({params}: { params: { type: string } }) {
     const {type} = params
     let users = type === 'cache' ? await getData() : await getDataWithNoCache()
     return (
-        <Suspense fallback={<h1>Loading...</h1>}>
+        // <div>
+            <Suspense fallback={<h1>Loading...</h1>}>
             {/*<h1 className="text-4xl font-bold">Todos</h1>*/}
             {/*<ul>*/}
             {/*    {todos.map((todo, index) => (*/}
@@ -80,17 +80,18 @@ export default async function SSR({params}: { params: { type: string } }) {
                 }
                 <Button/>
             </ul>
-        </Suspense>
+            </Suspense>
+        // </div>
     )
 }
 
-// export async function getServerSideProps() {
-//     const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
-//     const data = await res.json();
-//
-//     return {
-//         props: {
-//             data, // will be passed to the page component as props
-//         },
-//     };
-// }
+export async function getServerSideProps() {
+    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
+    const data = await res.json();
+
+    return {
+        props: {
+            data, // will be passed to the page component as props
+        },
+    };
+}
