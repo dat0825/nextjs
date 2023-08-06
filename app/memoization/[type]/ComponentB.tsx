@@ -3,9 +3,8 @@ import {User} from "@/app/ssr/[type]/page";
 import React from "react";
 import {wait} from "@/app/utils/utils";
 
-
 export default async function ComponentB({type}: { type: string }) {
-    await wait(15000)
+    await wait(8000)
     const data = type === "signal" ? await getDataWithSignal() : await getData()
     return (
         <div>
