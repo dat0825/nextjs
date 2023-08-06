@@ -19,7 +19,7 @@ export default function CRS({params}: { params: any }) {
     const {type} = params;
     const [users, setUsers] = useState<User[]>([])
     useEffect(() => {
-        const fetchFunc = async (): Promise<void> => {
+        const fetchFunc = async (): Promise<void> => { 
             const data = type === "req-server" ? await requestDataFromServer() : await requestDataFromClient()
             setUsers(data)
         }

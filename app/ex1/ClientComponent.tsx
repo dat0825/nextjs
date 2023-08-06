@@ -3,6 +3,7 @@
 // import {useState} from "react";
 
 import {Suspense, useState} from "react";
+import {Button} from "@chakra-ui/react";
 
 export default function ClientComponent({component}: { component: any }) {
     const [value, setValue] = useState<number>(0)
@@ -18,6 +19,7 @@ export default function ClientComponent({component}: { component: any }) {
                 setValue(value + 1)
             }}>Button
             </button>
+            <Button colorScheme='blue'>Button</Button>
         </Suspense>
     )
 }
