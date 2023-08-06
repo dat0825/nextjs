@@ -23,12 +23,12 @@ export async function generateMetadata({params: {type}}: Params): Promise<Metada
 }
 
 const getData = async () => {
-    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list")
+    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list", {next: {tags: ['get-list']}})
     return await res.json();
 }
 
 const getDataWithNoCache = async () => {
-    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list",{cache: "no-store"})
+    const res = await fetch("https://64c24343eb7fd5d6ebcf84d0.mockapi.io/list", {cache: "no-store"})
     return await res.json();
 }
 
