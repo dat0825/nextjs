@@ -1,7 +1,7 @@
 import ComponentA from "@/app/memoization/[type]/ComponentA";
 import ComponentB from "@/app/memoization/[type]/ComponentB";
 
-export default function Page({params}: { params: { type: string } }) {
+export default async function Page({params}: { params: { type: string } }) {
     const {type} = params
     return (
         // <Suspense fallback={<h1>Loading....</h1>}>
