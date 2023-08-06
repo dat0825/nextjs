@@ -1,6 +1,5 @@
 import {Metadata} from "next";
 import React, {Suspense} from "react";
-import {revalidatePath} from "next/cache";
 
 export type User = {
     name: string,
@@ -32,20 +31,7 @@ const getDataWithNoCache = async () => {
     return await res.json();
 }
 
-const todos: string[] = ["Learn React"];
-
 export default async function SSR({params}: { params: { type: string } }) {
-
-    async function addTodo(data: FormData) {
-        "use server";
-
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-
-        const todo = data.get("todo") as string;
-        todos.push(todo);
-        revalidatePath("/");
-    }
-
 
     const {type} = params
     let users = type === 'cache' ? await getData() : await getDataWithNoCache()
