@@ -35,6 +35,7 @@ export default async function SSR({params}: { params: { type: string } }) {
 
     const {type} = params
     let users = type === 'cache' ? await getData() : await getDataWithNoCache()
+    await getDataWithNoCache()
     return (
         <Suspense fallback={<h1>Loading...</h1>}>
             <h1>{type === 'cache' ? "Force Cache" : "No Cache"}</h1>
